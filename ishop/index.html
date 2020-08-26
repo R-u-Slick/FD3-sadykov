@@ -15,16 +15,26 @@
     <link rel="stylesheet" type="text/css" href="VotesBlock.css" />
 
     <script>
-      var questionText = "Как вы относитесь к программированию?";
+      var titleText = "Наименование товаров";
       var answersArr = [
-        { text: "хорошо", code: 1, count: 222 },
-        { text: "не получается", code: 2, count: 123 },
-        { text: "избегаю", code: 3, count: 444 },
+        {
+          name: "сковородка",
+          cost: 1000,
+          stock: 222,
+          image: "img/skovorodka.jpg",
+        },
+        {
+          name: "кастрюлька",
+          cost: 2000,
+          stock: 123,
+          image: "img/kastrulka.jpg",
+        },
+        { name: "айфон", cost: 3000, stock: 444, image: "img/iphone.jpg" },
       ];
 
       ReactDOM.render(
         React.createElement(VotesBlock, {
-          question: questionText,
+          title: titleText,
           answers: answersArr,
         }),
         document.getElementById("container")
