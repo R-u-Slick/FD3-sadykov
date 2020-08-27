@@ -3,9 +3,8 @@
 
   render: function () {
     var goodsCode = [];
-    
-    for (var a = 0; a < this.props.goods.length; a++) {
-      var product = this.props.goods[a];
+    this.props.goods.forEach((a)=>{
+      var product = a;
       var productCode = React.DOM.tr(
         { key: product.code, className: "Product" },
         React.DOM.td({ className: "Product-name" }, product.name),
@@ -17,7 +16,7 @@
         )
       );
       goodsCode.push(productCode);
-    }
+    })
     return React.DOM.div(
       { className: "GoodsBlock" },
       React.DOM.div({ className: "Title" }, this.props.title),
