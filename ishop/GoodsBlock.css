@@ -1,29 +1,22 @@
-﻿.VotesBlock {
-  border: double gray 3px;
-  width: 180px;
-  padding: 3px 7px;
-  background-color: #f0f0f0;
-}
-
-.VotesBlock .Question {
+﻿
+.GoodsBlock > .Title {
+  font-size: 20px;
   font-weight: bold;
 }
 
-.VotesBlock .Answers {
-  padding-top: 5px;
+.GoodsBlock > .Goods-table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  min-width: 800px;
 }
 
-.VotesBlock .Answers .Answer {
-  padding: 2px 0;
+.GoodsBlock > .Goods-table td, th {
+  border: 1px black solid;
+  text-align: left;
 }
 
-.VotesBlock .Answers .Answer .Count {
-  float: right;
-  width: 30px;
-  font-weight: bold;
-  text-align: right;
+.GoodsBlock .Product-image {
+  max-width: 200px;
 }
+  
 
-.VotesBlock .Answers .Answer .Text {
-  margin-right: 30px;
-}
