@@ -22,14 +22,17 @@
       React.DOM.div({ className: "Title" }, this.props.title),
       React.DOM.table(
         { className: "Goods-table" },
-        React.DOM.tr(
-          { className: "Table-header" },
-          React.DOM.th({ className: "Table-header__content" }, "Наименование"),
-          React.DOM.th({ className: "Table-header__content" }, "Цена, USD"),
-          React.DOM.th({ className: "Table-header__content" }, "Кол-во на складе, шт."),
-          React.DOM.th({ className: "Table-header__content" }, "Изображение"),
+        React.DOM.thead(
+          {className: "Table-header"},
+          React.DOM.tr(
+            { className: "Table-header-row" },
+            React.DOM.th({ className: "Table-header__content" }, "Наименование"),
+            React.DOM.th({ className: "Table-header__content" }, "Цена, USD"),
+            React.DOM.th({ className: "Table-header__content" }, "Кол-во на складе, шт."),
+            React.DOM.th({ className: "Table-header__content" }, "Изображение"),
+          )
         ),
-        goodsCode
+        React.DOM.tbody({className: "Table-body"}, goodsCode)
       )
     );
   },
