@@ -11,12 +11,14 @@
     <script src="https://unpkg.com/react@15/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
 
-    <script src="GoodsBlock.js"></script>
-    <link rel="stylesheet" type="text/css" href="GoodsBlock.css" />
+    <script src="Shop.js"></script>
+    <link rel="stylesheet" type="text/css" href="Shop.css" />
+    <script src="Product.js"></script>
+    <link rel="stylesheet" type="text/css" href="Product.css" />
 
     <script>
       var titleText = "Перечень товаров";
-      var goodsArr = [
+      var productsArr = [
         {
           name: "Сковородка",
           code: 1,
@@ -41,9 +43,9 @@
       ];
 
       ReactDOM.render(
-        React.createElement(GoodsBlock, {
+        React.createElement(Shop, {
           title: titleText,
-          goods: goodsArr,
+          products: productsArr,
         }),
         document.getElementById("container")
       );

@@ -1,21 +1,21 @@
 ﻿
-.GoodsBlock > .Title {
+.Shop > .Title {
   font-size: 20px;
   font-weight: bold;
 }
 
-.GoodsBlock > .Goods-table {
+.Shop > .Products-table {
   margin-top: 20px;
   border-collapse: collapse;
   min-width: 800px;
 }
 
-.GoodsBlock > .Goods-table td, th {
+.Shop > .Products-table td, th {
   border: 1px black solid;
   text-align: left;
 }
 
-.GoodsBlock .Product-image {
+.Shop .Product-image {
   max-width: 200px;
 }
   
