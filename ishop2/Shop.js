@@ -17,7 +17,7 @@
   getInitialState: function() {
     return { 
       selectedRowCode: null,
-      deletedRows: [],
+      currentProducts: this.props.products
     };
   },
 
@@ -25,19 +25,18 @@
     this.setState( {selectedRowCode:code} );
   },
 
-  rowDeleted: function(code) {
-    var currentDeletedRows = this.state.deletedRows
-    currentDeletedRows.push(code);
-    this.setState({deletedRows: currentDeletedRows});
+  rowDeleted: function(key) {
+    var currentRows = this.state.currentProducts.filter(item =>item.code!==key);
+    this.setState({currentProducts: currentRows});
   },
 
 
   render: function () {
-    var productsCode = this.props.products.map(v =>
+    var productsCode = this.state.currentProducts.map(v =>
       React.createElement(Product, {key: v.code, code: v.code,
         name:v.name, cost:v.cost, stock:v.stock,
         image:v.image, cbSelected: this.rowSelected, selectedRowCode: this.state.selectedRowCode,
-        deletedRows: this.state.deletedRows, cbDeleted: this.rowDeleted
+        cbDeleted: this.rowDeleted
       })
     )
     return React.DOM.div(
