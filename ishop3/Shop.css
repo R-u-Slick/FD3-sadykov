@@ -1,0 +1,22 @@
+﻿
+.Shop > .Title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.Shop > .Products-table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  min-width: 800px;
+}
+
+.Shop > .Products-table td, th {
+  border: 1px black solid;
+  text-align: left;
+}
+
+.Shop .Product-image {
+  max-width: 200px;
+}
+  
+
