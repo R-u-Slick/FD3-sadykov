@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './Shop.css';
 
 import Product from './Product';
+import ProductInfo from './Info';
 
 class Shop extends React.Component {
 
@@ -22,12 +23,14 @@ class Shop extends React.Component {
 
   state = {
     selectedRowCode: null,
+    selectedProduct: null,
     currentProducts: this.props.products
   };
   
 
   rowSelected = (code) => {
-    this.setState( {selectedRowCode:code} );
+    this.setState({selectedRowCode:code}) ;
+    this.setState({selectedProduct:this.props.products.filter(v => v.code===this.code)});
   };
 
   rowDeleted = (key) => {
@@ -44,25 +47,32 @@ class Shop extends React.Component {
       />
     )
     return (
-      <div className='Shop'>
-      <div className='Title'>
-        {this.props.title}
+      <div className="Shop">
+        <div className="title">
+          {this.props.title}
+        </div>
+        <table className="Products-table">
+          <thead className="Table-header">
+            <tr>
+              <th>Наименование</th>
+              <th>Цена, USD</th>
+              <th>Кол-во на складе, шт.</th>
+              <th>Изображение</th>
+              <th>Управление</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productsCode}
+          </tbody>
+        </table>
+        <div className="additional-info">
+          {
+          (this.state.selectedRowCode)&&
+          <ProductInfo name={this.state.selectedProduct.name} cost={this.state.selectedProduct.cost} 
+          stock={this.state.selectedProduct.stock} image={this.state.selectedProduct.image}/>
+          }
+        </div>
       </div>
-      <table className='Products-table'>
-        <thead className='Table-header'>
-          <tr>
-            <th>Наименование</th>
-            <th>Цена, USD</th>
-            <th>Кол-во на складе, шт.</th>
-            <th>Изображение</th>
-            <th>Управление</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productsCode}
-        </tbody>
-      </table>
-    </div>
     );
   }
 };

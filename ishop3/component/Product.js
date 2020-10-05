@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Product.css';
 
-class Product extends React.component{
+class Product extends React.Component{
 
   static propTypes = {
     code: PropTypes.number.isRequired,
@@ -30,17 +30,18 @@ class Product extends React.component{
 
   render() {
     return (
-      <tr className={(this.props.code===this.props.selectedRowCode)?"product-selected":"product"} onClick={this.rowClicked}>
-        <td className="Product-name">{this.props.name}</td>
-        <td className="Cost">{this.props.cost}</td>
-        <td className="Stock">{this.props.stock}</td>
-        <td className="Image-cell">
-          <img className="Product-image" src={this.props.image}/>
-        </td>
-        <td className="control-cell">
-          <input type="button" value="удалить" className="delete-button" onClick={this.rowDeleted}/>
-        </td>
-      </tr>
+         <tr className={(this.props.code===this.props.selectedRowCode)?"product-selected":"product"} onClick={this.rowClicked}>
+          <td className="Product-name">{this.props.name}</td>
+          <td className="Cost">{this.props.cost}</td>
+          <td className="Stock">{this.props.stock}</td>
+          <td className="Image-cell">
+            <img className="Product-image" src={this.props.image}/>
+          </td>
+          <td className="control-cell">
+            <input type="button" value="Редактировать" className="edit-button" onClick={this.rowDeleted}/>
+            <input type="button" value="Удалить" className="delete-button" onClick={this.rowDeleted}/>
+          </td>
+        </tr>
     )
   }
 }
