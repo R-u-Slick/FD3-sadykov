@@ -1,8 +1,5 @@
-﻿.product {
-  background: none;
+﻿.product-image img {
+  width: 200px;
 }
 
-.product-selected {
-  background: red;
-}
 

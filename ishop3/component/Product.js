@@ -13,7 +13,8 @@ class Product extends React.Component{
     image: PropTypes.string.isRequired,
     cbSelected: PropTypes.func.isRequired,
     selectedRowCode: PropTypes.number,
-    cbDeleted: PropTypes.func.isRequired
+    cbDeleted: PropTypes.func.isRequired,
+    cbEdit: PropTypes.func.isRequired
   };
 
 
@@ -28,6 +29,11 @@ class Product extends React.Component{
     this.props.cbDeleted(this.props.code);
   };
 
+  editProduct = (EO) => {
+    EO.stopPropagation();
+    this.props.cbEdit(this.props.code);
+  }
+
   render() {
     return (
          <tr className={(this.props.code===this.props.selectedRowCode)?"product-selected":"product"} onClick={this.rowClicked}>
@@ -38,7 +44,7 @@ class Product extends React.Component{
             <img className="Product-image" src={this.props.image}/>
           </td>
           <td className="control-cell">
-            <input type="button" value="Редактировать" className="edit-button" onClick={this.rowDeleted}/>
+            <input type="button" value="Редактировать" className="edit-button" onClick={this.editProduct}/>
             <input type="button" value="Удалить" className="delete-button" onClick={this.rowDeleted}/>
           </td>
         </tr>

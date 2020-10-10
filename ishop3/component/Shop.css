@@ -18,5 +18,9 @@
 .Shop .Product-image {
   max-width: 200px;
 }
+
+.Shop .new-product-button {
+  margin-top: 10px;
+}
   
 
