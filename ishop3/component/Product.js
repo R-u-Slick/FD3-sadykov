@@ -14,7 +14,9 @@ class Product extends React.Component{
     cbSelected: PropTypes.func.isRequired,
     selectedRowCode: PropTypes.number,
     cbDeleted: PropTypes.func.isRequired,
-    cbEdit: PropTypes.func.isRequired
+    cbEdit: PropTypes.func.isRequired,
+    formChanged: PropTypes.bool.isRequired,
+    mode: PropTypes.number.isRequired
   };
 
 
@@ -36,7 +38,7 @@ class Product extends React.Component{
 
   render() {
     return (
-         <tr className={(this.props.code===this.props.selectedRowCode)?"product-selected":"product"} onClick={this.rowClicked}>
+         <tr className={((this.props.code===this.props.selectedRowCode)&&(this.props.mode===0))?"product-selected":"product"} onClick={this.rowClicked}>
           <td className="Product-name">{this.props.name}</td>
           <td className="Cost">{this.props.cost}</td>
           <td className="Stock">{this.props.stock}</td>
@@ -44,8 +46,8 @@ class Product extends React.Component{
             <img className="Product-image" src={this.props.image}/>
           </td>
           <td className="control-cell">
-            <input type="button" value="Редактировать" className="edit-button" onClick={this.editProduct}/>
-            <input type="button" value="Удалить" className="delete-button" onClick={this.rowDeleted}/>
+            <input type="button" value="Редактировать" className="edit-button" onClick={this.editProduct} disabled={this.props.formChanged}/>
+            <input type="button" value="Удалить" className="delete-button" onClick={this.rowDeleted} disabled={Boolean(this.props.mode)}/>
           </td>
         </tr>
     )
