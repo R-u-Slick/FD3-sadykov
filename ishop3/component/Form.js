@@ -114,7 +114,7 @@ class ProductForm extends React.Component{
           {(this.props.mode===2)&&"Создание нового товара"}
         </h2>
         
-        <div className="product-id">ID: {this.state.codeValue}</div>
+        <div className="product-id">ID: {this.props.code}</div>
         <div className="product-name">
           <span>Имя</span>
           <input type="text" name="input-name" className="input-text" value={this.state.nameValue} onChange={this.nameChanged} onBlur={this.changeCheck}/>
