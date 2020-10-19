@@ -46,7 +46,7 @@ class Product extends React.Component{
             <img className="Product-image" src={this.props.image}/>
           </td>
           <td className="control-cell">
-            <input type="button" value="Редактировать" className="edit-button" onClick={this.editProduct} disabled={this.props.formChanged}/>
+            <input type="button" value="Редактировать" className="edit-button" onClick={this.editProduct} disabled={this.props.formChanged||(this.props.mode===2)}/>
             <input type="button" value="Удалить" className="delete-button" onClick={this.rowDeleted} disabled={Boolean(this.props.mode)}/>
           </td>
         </tr>
