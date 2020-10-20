@@ -131,7 +131,7 @@ class Shop extends React.Component {
           }
           {
           (Boolean(this.state.mode))&&
-          <ProductForm code={this.state.editedRow.code} name={this.state.editedRow.name} cost={this.state.editedRow.cost} 
+          <ProductForm key={this.state.editedRow.code} code={this.state.editedRow.code} name={this.state.editedRow.name} cost={this.state.editedRow.cost} 
           stock={this.state.editedRow.stock} image={this.state.editedRow.image} mode = {this.state.mode} cbEditModeCancelled={this.editModeCancelled}
           cbNewProduct={this.newProductSave} cbFormChanged={this.formChanged} cbDataChanged = {this.dataChanged}/>
           }
