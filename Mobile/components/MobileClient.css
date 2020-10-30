@@ -1,0 +1,18 @@
+﻿.MobileClient
+{
+  border-bottom: 1px solid gray;
+}
+
+.MobileClientStatusblocked {
+  background-color: red;
+}
+
+.MobileClientStatusactive {
+  background-color: green;
+}
+
+th {
+  text-align: left;
+  width: 120px
+}
+
