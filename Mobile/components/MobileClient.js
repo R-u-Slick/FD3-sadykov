@@ -42,10 +42,6 @@ class MobileClient extends React.PureComponent {
     this.setState({formChanged: false});
   }
 
-  componentWillReceiveProps = (newProps) => {
-    this.setState({info:newProps.info});
-  };
-
   clientDelete = () => {
     clientEvents.emit('clientDeleted',this.props.info.id);
   }
