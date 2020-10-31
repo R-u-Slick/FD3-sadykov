@@ -20,13 +20,6 @@ class MobileClient extends React.PureComponent {
   state = {
   };
 
-  componentDidMount = () => {
-  };
-
-  componentWillUnmount = () => {
-  };
-
-
   clientDelete = () => {
     clientEvents.emit('clientDeleted',this.props.info.id);
   }
