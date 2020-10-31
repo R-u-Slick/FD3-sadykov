@@ -84,8 +84,13 @@ class MobileCompany extends React.PureComponent {
       editedClients[editedClientIndex] = newClient;
     }
     if (this.state.mode===2) {
-      this.state.clients.push(newClient);
+      let code=1;
+      while (this.state.clients.some(v => v.code==code)) {
+      code++
+      }
+      newClient.id = code;
     }
+    this.state.clients.push(newClient);
   }
 
   setName1 = () => {
@@ -110,11 +115,6 @@ class MobileCompany extends React.PureComponent {
 
   addClient = () => {
     this.setState({mode: 2});
-    let code=1;
-    while (this.state.clients.some(v => v.code==code)) {
-      code++
-    }
-    this.setState({selectedItemCode: code});
   }
   
   render() {
@@ -125,18 +125,17 @@ class MobileCompany extends React.PureComponent {
       <MobileClient key={client.id} info={client} mode={this.state.mode}/>
     );
     let selectedItem;
+    let newItem={};
+    newItem.id=this.state.selectedItemCode;
+    newItem.surname='';
+    newItem.name='';
+    newItem.fathersName='';
+    newItem.balance='';
+    //редактирование клиента
     if (this.state.mode===1){
-      selectedItem=this.props.clients.find(client => client.id===this.state.selectedItemCode);
-      
+      selectedItem=this.props.clients.find(client => client.id===this.state.selectedItemCode);   
     }
-    if (this.state.mode===2) {
-      selectedItem={};
-      selectedItem.id=this.state.selectedItemCode;
-      selectedItem.surname='';
-      selectedItem.name='';
-      selectedItem.fathersName='';
-      selectedItem.balance='';
-    }
+
 
     return (
       <div className='MobileCompany'>
@@ -175,9 +174,14 @@ class MobileCompany extends React.PureComponent {
         }
       </div>
         {
-          (Boolean(this.state.mode))&&
+          (Boolean(this.state.mode===1))&&
           <ClientForm key={selectedItem.id} info={selectedItem} mode = {this.state.mode} />
         }
+        {
+          (Boolean(this.state.mode===2))&&
+          <ClientForm mode = {this.state.mode} />
+        }
+
       </div>
     );
   }

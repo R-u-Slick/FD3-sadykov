@@ -8,26 +8,17 @@ class ClientForm extends React.PureComponent{
 
   static propTypes = {
     info:PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      surname: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      fathersName: PropTypes.string.isRequired,
-      balance: PropTypes.isRequired,
+      id: PropTypes.number,
+      surname: PropTypes.string,
+      name: PropTypes.string,
+      fathersName: PropTypes.string,
+      balance: PropTypes.number,
     }),
     mode: PropTypes.number.isRequired
   };
 
   state = {
-    codeValue: this.props.info.id,
-    surnameValue: this.props.info.surname,
-    surnameError: "",
-    nameValue: this.props.info.name,
-    nameError: "",
-    fathersNameValue: this.props.info.fathersName,
-    fathersNameError: "",
-    balanceValue: this.props.info.balance,
-    balanceError: "",
-  }
+  };
 
   inputSurnameRef = null;
   inputNameRef = null;
@@ -53,7 +44,9 @@ class ClientForm extends React.PureComponent{
 
   saveClient = () => {
     let newClient = {};
-    newClient.id = this.state.codeValue;
+    if (this.props.mode===1) {
+      newClient.id = this.props.id;
+    }
     newClient.surname = this.inputSurnameRef.value;
     newClient.name = this.inputNameRef.value;
     newClient.fathersName = this.inputFathersNameRef.value;
@@ -68,15 +61,29 @@ class ClientForm extends React.PureComponent{
   }
 
   changeCheck = () => {
-    let changed;
-    if ((this.props.info.surname!==this.inputSurnameRef.value)||(this.props.info.name!==this.inputNameRef.value)||
-    (this.props.info.fathersName!==this.inputFathersNameRef.value)||(Number(this.props.info.balance)!==Number(this.inputBalanceRef.value))){
-      changed = true;
+    if (this.props.mode===1) {
+      let changed;
+      if ((this.props.info.surname!==this.inputSurnameRef.value)||(this.props.info.name!==this.inputNameRef.value)||
+      (this.props.info.fathersName!==this.inputFathersNameRef.value)||(Number(this.props.info.balance)!==Number(this.inputBalanceRef.value))){
+        changed = true;
+      }
+      else {
+        changed=false;
+      }
+      formEvents.emit('formChanged', changed);
     }
-    else {
-      changed=false;
+    if (this.props.mode===2) {
+      let changed;
+      if ((this.inputSurnameRef.value!=='')||(this.inputNameRef.value!=='')||
+      (this.inputFathersNameRef.value!=='')||(Number(this.inputBalanceRef.value!==''))){
+        changed = true;
+      }
+      else {
+        changed=false;
+      }
+      formEvents.emit('formChanged', changed);
     }
-    formEvents.emit('formChanged', changed);
+
   }
 
   render() {
@@ -86,23 +93,29 @@ class ClientForm extends React.PureComponent{
         <h3 className="form-header">
           {(this.props.mode===1)&&"Редактирование клиента"}
           {(this.props.mode===2)&&"Добавление нового клиента"}
-        </h3>  
+        </h3>  {
+        (this.props.mode===1)&&
         <div className="product-id">ID: {this.props.info.id}</div>
+        }
         <div className="product-surname">
           <span>Фамимлия</span>
-          <input type="text" name="input-surname" className="input-text" defaultValue={this.state.surnameValue} onBlur={this.changeCheck} ref={this.setInputSurnameRef}/>
+          <input type="text" name="input-surname" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.surname:''}
+          onBlur={this.changeCheck} ref={this.setInputSurnameRef}/>
         </div>
         <div className="product-name">
           <span>Имя</span>
-          <input type="text" name="input-name" className="input-text" defaultValue={this.state.nameValue} onBlur={this.changeCheck} ref={this.setInputNameRef}/>
+          <input type="text" name="input-name" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.name:''}
+          onBlur={this.changeCheck} ref={this.setInputNameRef}/>
         </div>
         <div className="product-fathersName">
           <span>Отчество</span>
-          <input type="text" name="input-fathersName" className="input-text" defaultValue={this.state.fathersNameValue} onBlur={this.changeCheck} ref={this.setInputFathersNameRef}/>
+          <input type="text" name="input-fathersName" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.fathersName:''} 
+          onBlur={this.changeCheck} ref={this.setInputFathersNameRef}/>
         </div>
         <div className="product-balance">
           <span>Баланс</span>
-          <input type="text" name="input-balance" className="input-text" defaultValue={this.state.balanceValue} onBlur={this.changeCheck} ref={this.setInputBalanceRef}/>
+          <input type="text" name="input-balance" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.balance:''} 
+          onBlur={this.changeCheck} ref={this.setInputBalanceRef}/>
         </div>
 
         <div className="form-controls">
