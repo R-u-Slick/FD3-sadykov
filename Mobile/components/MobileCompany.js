@@ -46,15 +46,15 @@ class MobileCompany extends React.PureComponent {
   clientFilter = (filteringMode) => {
     //показать заблокированных
     if (filteringMode===0) {
-      return this.state.clients.filter(v => v.balance<0)
+      return this.state.clients.filter(v => v.balance<0);
     }
     //показать активных
     if (filteringMode===1) {
-      return this.state.clients.filter(v => v.balance>=0)
+      return this.state.clients.filter(v => v.balance>=0);
     }
     //Показать всех
     if (filteringMode===2) {
-      return this.state.clients
+      return this.state.clients;
     }
   }
 
@@ -122,9 +122,9 @@ class MobileCompany extends React.PureComponent {
     console.log("MobileCompany render");
     let filteredClients = this.clientFilter(this.state.filter);
     let clientsCode=filteredClients.map( client =>
-      <MobileClient key={client.id} info={client} filter={this.state.filter} mode={this.state.mode}/>
+      <MobileClient key={client.id} info={client} mode={this.state.mode}/>
     );
-    let selectedItem
+    let selectedItem;
     if (this.state.mode===1){
       selectedItem=this.props.clients.find(client => client.id===this.state.selectedItemCode);
       
