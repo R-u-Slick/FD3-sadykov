@@ -42,7 +42,7 @@ class ClientForm extends React.PureComponent{
   saveClient = () => {
     let newClient = {};
     if (this.props.mode===1) {
-      newClient.id = this.props.id;
+      newClient.id = this.props.info.id;
     }
     newClient.surname = this.inputSurnameRef.value;
     newClient.name = this.inputNameRef.value;
@@ -116,8 +116,7 @@ class ClientForm extends React.PureComponent{
         </div>
 
         <div className="form-controls">
-          <input type="button" value="Сохранить" className="save-button" onClick={this.saveClient} 
-          disabled={this.state.nameError||this.state.costError||this.state.stockError||this.state.imageError}/>
+          <input type="button" value="Сохранить" className="save-button" onClick={this.saveClient} />
           <input type="button" value="Отмена" className="cancel-button" onClick={this.formCancel}/>
         </div>
       </div>
