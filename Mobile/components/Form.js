@@ -17,9 +17,6 @@ class ClientForm extends React.PureComponent{
     mode: PropTypes.number.isRequired
   };
 
-  state = {
-  };
-
   inputSurnameRef = null;
   inputNameRef = null;
   inputFathersNameRef = null;

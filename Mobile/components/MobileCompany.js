@@ -125,18 +125,10 @@ class MobileCompany extends React.PureComponent {
       <MobileClient key={client.id} info={client} mode={this.state.mode}/>
     );
     let selectedItem;
-    let newItem={};
-    newItem.id=this.state.selectedItemCode;
-    newItem.surname='';
-    newItem.name='';
-    newItem.fathersName='';
-    newItem.balance='';
     //редактирование клиента
     if (this.state.mode===1){
       selectedItem=this.props.clients.find(client => client.id===this.state.selectedItemCode);   
     }
-
-
     return (
       <div className='MobileCompany'>
         <div className='MobileCompanySwitch'>
