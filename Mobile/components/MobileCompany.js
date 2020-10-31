@@ -123,7 +123,7 @@ class MobileCompany extends React.PureComponent {
     console.log("MobileCompany render");
     let filteredClients = this.clientFilter(this.state.filter);
     let clientsCode=filteredClients.map( client =>
-      <MobileClient key={client.id} info={client} mode={this.state.mode}/>
+      <MobileClient key={client.id} info={client}/>
     );
     let selectedItem;
     //редактирование клиента

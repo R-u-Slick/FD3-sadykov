@@ -50,37 +50,10 @@ class ClientForm extends React.PureComponent{
     newClient.balance = Number(this.inputBalanceRef.value);
     this.formCancel()
     formEvents.emit('formSaved', newClient);
-    formEvents.emit('formChangedCancel');
   }
 
   formCancel = () => {
     formEvents.emit('formCancelled');
-  }
-
-  changeCheck = () => {
-    if (this.props.mode===1) {
-      let changed;
-      if ((this.props.info.surname!==this.inputSurnameRef.value)||(this.props.info.name!==this.inputNameRef.value)||
-      (this.props.info.fathersName!==this.inputFathersNameRef.value)||(Number(this.props.info.balance)!==Number(this.inputBalanceRef.value))){
-        changed = true;
-      }
-      else {
-        changed=false;
-      }
-      formEvents.emit('formChanged', changed);
-    }
-    if (this.props.mode===2) {
-      let changed;
-      if ((this.inputSurnameRef.value!=='')||(this.inputNameRef.value!=='')||
-      (this.inputFathersNameRef.value!=='')||(Number(this.inputBalanceRef.value!==''))){
-        changed = true;
-      }
-      else {
-        changed=false;
-      }
-      formEvents.emit('formChanged', changed);
-    }
-
   }
 
   render() {
@@ -97,22 +70,22 @@ class ClientForm extends React.PureComponent{
         <div className="product-surname">
           <span>Фамимлия</span>
           <input type="text" name="input-surname" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.surname:''}
-          onBlur={this.changeCheck} ref={this.setInputSurnameRef}/>
+          ref={this.setInputSurnameRef}/>
         </div>
         <div className="product-name">
           <span>Имя</span>
           <input type="text" name="input-name" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.name:''}
-          onBlur={this.changeCheck} ref={this.setInputNameRef}/>
+          ref={this.setInputNameRef}/>
         </div>
         <div className="product-fathersName">
           <span>Отчество</span>
           <input type="text" name="input-fathersName" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.fathersName:''} 
-          onBlur={this.changeCheck} ref={this.setInputFathersNameRef}/>
+          ref={this.setInputFathersNameRef}/>
         </div>
         <div className="product-balance">
           <span>Баланс</span>
           <input type="text" name="input-balance" className="input-text" defaultValue={(this.props.mode===1)?this.props.info.balance:''} 
-          onBlur={this.changeCheck} ref={this.setInputBalanceRef}/>
+          ref={this.setInputBalanceRef}/>
         </div>
 
         <div className="form-controls">

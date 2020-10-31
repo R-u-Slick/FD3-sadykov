@@ -15,32 +15,17 @@ class MobileClient extends React.PureComponent {
       fathersName: PropTypes.string.isRequired,
       balance: PropTypes.number.isRequired,
     }),
-    mode: PropTypes.number.isRequired,
   };
 
   state = {
-    formChanged: false,
   };
 
   componentDidMount = () => {
-    formEvents.addListener('formChanged', this.formChanged);
-    formEvents.addListener('formChangedCancel',this.formChangedCancel);
-    formEvents.addListener('formCancelled', this.formChangedCancel);
   };
 
   componentWillUnmount = () => {
-    formEvents.removeListener('formChanged', this.formChanged);
-    formEvents.removeListener('formChangedCancel',this.formChangedCancel);
-    formEvents.removeListener('formCancelled', this.formChangedCancel);
   };
 
-  formChanged = (changed) => {
-    this.setState({formChanged: changed});
-  }
-
-  formChangedCancel = () => {
-    this.setState({formChanged: false});
-  }
 
   clientDelete = () => {
     clientEvents.emit('clientDeleted',this.props.info.id);
@@ -67,7 +52,7 @@ class MobileClient extends React.PureComponent {
       <td className='MobileClientFIO'>{this.props.info.balance}</td>
       <td className={'MobileClientStatus'+status}>{status}</td>
       <td className='MobileClientEditButton'><input className='edit-button' type='button' value='Редактировать' onClick={this.clientEdit} disabled={this.state.formChanged}/></td>
-      <td className='MobileClientDeleteButton'><input className='edit-button' type='button' value='Удалить' onClick={this.clientDelete} disabled={this.props.mode}/></td>
+      <td className='MobileClientDeleteButton'><input className='edit-button' type='button' value='Удалить' onClick={this.clientDelete}/></td>
     </tr>
     )    
   }
