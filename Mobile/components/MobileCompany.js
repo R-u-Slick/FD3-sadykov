@@ -85,11 +85,13 @@ class MobileCompany extends React.PureComponent {
       this.setState({clients: editedClients})
     }
     if (this.state.mode===2) {
-      let code=1;
-      while (this.state.clients.some(v => v.id==code)) {
-        code++
-      }
-      newClient.id = code;
+      let maxId=0;
+      this.state.clients.forEach(v => {
+        if (v.id>maxId) {
+          maxId=v.id
+        }
+      })
+      newClient.id = maxId+1;
       this.state.clients.push(newClient);
     }
   }
