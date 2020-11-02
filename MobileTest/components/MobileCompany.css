@@ -1,0 +1,27 @@
+﻿.MobileCompany
+{
+  max-width: 750px;
+  padding: 3px 7px;
+}
+
+.MobileCompanySwitch {
+  border-bottom: 2px solid gray;
+  padding-bottom: 20px;
+}
+
+.MobileCompanyFilter {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid gray;
+
+}
+
+.MobileCompanyClients {
+  border-bottom: 2px solid gray;
+}
+
+.mobileCompanyAddClient {
+  padding-top: 20px;
+}
+
+

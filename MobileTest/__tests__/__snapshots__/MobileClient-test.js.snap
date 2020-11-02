@@ -1,0 +1,266 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`работа кнопки "Редактировать" 1`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванов
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    Иван
+  </td>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванович
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    200
+  </td>
+  <td
+    className="MobileClientStatusactive"
+  >
+    active
+  </td>
+  <td
+    className="MobileClientEditButton"
+  >
+    <input
+      className="edit-button"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+      value="Редактировать"
+    />
+  </td>
+  <td
+    className="MobileClientDeleteButton"
+  >
+    <input
+      className="delete-button"
+      onClick={[Function]}
+      type="button"
+      value="Удалить"
+    />
+  </td>
+</tr>
+`;
+
+exports[`работа кнопки "Редактировать" 2`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванов
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    Иван
+  </td>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванович
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    200
+  </td>
+  <td
+    className="MobileClientStatusactive"
+  >
+    active
+  </td>
+  <td
+    className="MobileClientEditButton"
+  >
+    <input
+      className="edit-button"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+      value="Редактировать"
+    />
+  </td>
+  <td
+    className="MobileClientDeleteButton"
+  >
+    <input
+      className="delete-button"
+      onClick={[Function]}
+      type="button"
+      value="Удалить"
+    />
+  </td>
+</tr>
+`;
+
+exports[`работа кнопки "Редактировать" 3`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванов
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    Иван
+  </td>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванович
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    200
+  </td>
+  <td
+    className="MobileClientStatusactive"
+  >
+    active
+  </td>
+  <td
+    className="MobileClientEditButton"
+  >
+    <input
+      className="edit-button"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+      value="Редактировать"
+    />
+  </td>
+  <td
+    className="MobileClientDeleteButton"
+  >
+    <input
+      className="delete-button"
+      onClick={[Function]}
+      type="button"
+      value="Удалить"
+    />
+  </td>
+</tr>
+`;
+
+exports[`работа кнопки "Удалить" 1`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванов
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    Иван
+  </td>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванович
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    200
+  </td>
+  <td
+    className="MobileClientStatusactive"
+  >
+    active
+  </td>
+  <td
+    className="MobileClientEditButton"
+  >
+    <input
+      className="edit-button"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+      value="Редактировать"
+    />
+  </td>
+  <td
+    className="MobileClientDeleteButton"
+  >
+    <input
+      className="delete-button"
+      onClick={[Function]}
+      type="button"
+      value="Удалить"
+    />
+  </td>
+</tr>
+`;
+
+exports[`работа кнопки "Удалить" 2`] = `
+<tr
+  className="MobileClient"
+>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванов
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    Иван
+  </td>
+  <td
+    className="MobileClientBalance"
+  >
+    Иванович
+  </td>
+  <td
+    className="MobileClientFIO"
+  >
+    200
+  </td>
+  <td
+    className="MobileClientStatusactive"
+  >
+    active
+  </td>
+  <td
+    className="MobileClientEditButton"
+  >
+    <input
+      className="edit-button"
+      disabled={undefined}
+      onClick={[Function]}
+      type="button"
+      value="Редактировать"
+    />
+  </td>
+  <td
+    className="MobileClientDeleteButton"
+  >
+    <input
+      className="delete-button"
+      onClick={[Function]}
+      type="button"
+      value="Удалить"
+    />
+  </td>
+</tr>
+`;
