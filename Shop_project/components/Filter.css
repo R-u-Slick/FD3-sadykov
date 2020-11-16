@@ -1,0 +1,23 @@
+﻿.filter {
+    padding-left: 20px;
+    width: 200px;
+    margin-right: 20px;
+    background-color: #fef43e;
+    border-radius: 10px;
+}
+
+.filter-title {
+    padding-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    color: #fa4831;
+}
+
+.filter-item__name {
+    padding-top: 10px;
+ 
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fa4831;
+}
+

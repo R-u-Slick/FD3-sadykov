@@ -1,7 +1,6 @@
 ﻿import React from 'react';
 import PropTypes from 'prop-types';
 import Product from './Product';
-import Filter from './Filter'
 
 import './MainPage.css';
 
@@ -32,11 +31,8 @@ class MainPage extends React.Component {
       />
     )
     return (
-      <div className="page-body">
-        <Filter/>
-        <div className="main-page">
-          {itemsCode}
-        </div>
+      <div className="main-page">
+        {itemsCode}
       </div>
     )
     ;

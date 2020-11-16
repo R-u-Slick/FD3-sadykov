@@ -1,8 +1,4 @@
-﻿.page-body {
-    display: flex;
-}
-
-.main-page {
+﻿.main-page {
     width: 1100px;
     display: flex;
     flex-wrap: wrap;
