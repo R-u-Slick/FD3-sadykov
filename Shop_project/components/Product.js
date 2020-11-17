@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './Product.css';
 
-class Product extends React.Component{
+class Product extends React.PureComponent{
 
   static propTypes = {
     id:  PropTypes.number.isRequired,
@@ -16,6 +16,7 @@ class Product extends React.Component{
 };
 
   render() {
+    console.log('Product'+this.props.id+'render')
     return (
          <div className="product-card">
           <div className="product-image">

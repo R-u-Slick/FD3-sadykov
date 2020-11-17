@@ -6,7 +6,7 @@ import {mainPageEvents} from './events';
 
 import './MainPage.css';
 
-class MainPage extends React.Component {
+class MainPage extends React.PureComponent {
 
   static propTypes = {
     items: PropTypes.arrayOf(
@@ -24,7 +24,7 @@ class MainPage extends React.Component {
 
  state = {
    items: this.props.items,
-   filteredItems: null,
+   filteredItems: this.props.items,
  }
 
  componentDidMount = () => {
@@ -36,17 +36,19 @@ componentWillUnmount = () => {
 };
 
 applyFilter = (filter) => {
-  // if (filteringMode===0) {
-  //   return this.state.clients.filter(v => v.balance<0);
-  // }
+  let filtered=[...this.state.items]
+  if (filter.type) {
+    this.setState({filteredItems: filtered.filter(v => v.type===filter.type)});
+  }
 }
 
 render() {
-    var itemsCode = this.state.items.map(v =>
+    var itemsCode = this.state.filteredItems.map(v =>
       <Product key={v.id} id={v.id} type={v.type} name={v.name} price={v.price} weight={v.weight}
       img={v.img}  info={v.info}
       />
     )
+    console.log('MainPage Render');
     return (
       <div className="page-body">
         <Filter/>

@@ -4,7 +4,7 @@ import {mainPageEvents} from './events';
 
 import './Filter.css';
 
-class Filter extends React.Component {
+class Filter extends React.PureComponent {
 
   static propTypes = {
   };
@@ -49,6 +49,7 @@ class Filter extends React.Component {
   }
 
   render() {
+    console.log('Filter rendered')
     return (
       <div className="filter">
         <div className="filter-title">Фильтр</div>
@@ -58,9 +59,9 @@ class Filter extends React.Component {
           </div>
           <div className="filter-type__select">
             <select id="select-type" ref={this.setInputTypeRef} defaultValue="Pizza">
-              <option value="Pizza" >Пицца</option> 
-              <option value="Snack" >Закуски</option>
-              <option value="Dessert">Дессерты</option>            
+              <option value="pizza" >Пицца</option> 
+              <option value="snack" >Закуски</option>
+              <option value="dessert">Дессерты</option>            
             </select>
           </div>
         </div>

@@ -208,7 +208,7 @@
     },
     {
       "id": 24,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Чизкейк",
       "price": 5.5,
       "weight": 0.11,
@@ -217,7 +217,7 @@
     },
     {
       "id": 25,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Шоколадный торт",
       "price": 5.5,
       "weight": 0.11,
@@ -226,7 +226,7 @@
     },
     {
       "id": 26,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Медовик",
       "price": 5.5,
       "weight": 0.135,
@@ -442,7 +442,7 @@
     },
     {
       "id": 50,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Чизкейк - большой",
       "price": 9.5,
       "weight": 0.25,
@@ -451,7 +451,7 @@
     },
     {
       "id": 51,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Шоколадный торт - большой",
       "price": 9.5,
       "weight": 0.25,
@@ -460,7 +460,7 @@
     },
     {
       "id": 52,
-      "type": "Dessert",
+      "type": "dessert",
       "name": "Медовик - большой",
       "price": 9.5,
       "weight": 0.35,
