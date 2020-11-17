@@ -13,25 +13,39 @@ class Filter extends React.Component {
   }
 
   inputTypeRef = null;
-  inputPriceRef = null;
-  inputWeightRef = null;
+  inputPriceMinRef = null;
+  inputPriceMaxRef = null;
+  inputWeightMinRef = null;
+  inputWeightMaxRef = null;
  
   setInputTypeRef = (ref) => {
     this.inputTypeRef=ref;
   };
 
-  setInputPriceRef = (ref) => {
-    this.inputPriceRef=ref;
+  setInputPriceMinRef = (ref) => {
+    this.inputPriceMinRef=ref;
   };
 
-  setInputWeightRef = (ref) => {
-    this.inputWeightRef=ref;
+  setInputPriceMaxRef = (ref) => {
+    this.inputPriceMaxRef=ref;
   };
 
+  setInputWeightMinRef = (ref) => {
+    this.inputWeightMinRef=ref;
+  };
 
+  setInputWeightMaxRef = (ref) => {
+    this.inputWeightMaxRef=ref;
+  };
 
   applyFilter = () => {
-    type = this.inputTypeRef.value;
+    let filter={};
+    filter.type=this.inputTypeRef.value;
+    filter.minPrice = this.inputPriceMinRef.value;
+    filter.maxPrice = this.inputPriceMaxRef.value;
+    filter.minWeight = this.inputWeightMinRef.value;
+    filter.maxWeigt = this.inputWeightMaxRef.value;
+    mainPageEvents.emit('applyFilter', filter);
   }
 
   render() {
@@ -52,22 +66,25 @@ class Filter extends React.Component {
         </div>
         <div className="filter-item">
           <div className="filter-item__name">
-            <label htmlFor="select-price">Цена блюда до:</label>
+            <label htmlFor="select-price-min">Цена блюда:</label>
           </div>
-          <div className="filter-price__input">
-            <input type="text" id="select-price" ref={this.setInputPriceRef} />
+          <div className="filter-input">
+            <input type="text" id="select-price-min" ref={this.setInputPriceMinRef} placeholder="от"/>
+            <input type="text" id="select-price-max" ref={this.setInputPriceMaxRef} placeholder="до"/>
           </div>
         </div>
         <div className="filter-item">
           <div className="filter-item__name">
-            <label htmlFor="select-weight">Вес блюда до:</label>
+            <label htmlFor="select-weight-min">Вес блюда:</label>
           </div>
-          <div className="filter-weight__input">
-            <input type="text" id="select-weight" ref={this.setInputWeightRef}/>
+          <div className="filter-input">
+            <input type="text" id="select-weight-min" ref={this.setInputWeightMinRef} placeholder='от'/>
+            <input type="text" id="select-weight-max" ref={this.setInputWeightMaxRef} placeholder='до'/>
           </div>
         </div>
-        <div className="filter-button">
-          <input type="button" value="Применить" className="filter-button__apply" onClick={this.applyFilter}/>
+        <div className="filter-controls">
+          <input className="filter-controls__button" type="button" value="Применить" onClick={this.applyFilter}/>
+          <input className="filter-controls__button" type="button" value="Сброс" onClick={this.cancelFilter}/>
         </div>
       </div>
     )

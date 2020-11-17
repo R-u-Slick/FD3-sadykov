@@ -1,6 +1,7 @@
 ﻿.filter {
     padding-left: 20px;
     width: 200px;
+    height: 300px;
     margin-right: 20px;
     background-color: #fef43e;
     border-radius: 10px;
@@ -16,8 +17,19 @@
 
 .filter-item__name {
     padding-top: 10px;
- 
     font-family: Arial, Helvetica, sans-serif;
+    color: #fa4831;
+}
+
+.filter-input input {
+    width: 50px;
+}
+
+.filter-controls__button {
+    margin-top: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
     color: #fa4831;
 }
 

@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import Product from './Product';
 import Filter from './Filter'
+import {mainPageEvents} from './events';
 
 import './MainPage.css';
 
@@ -23,9 +24,24 @@ class MainPage extends React.Component {
 
  state = {
    items: this.props.items,
+   filteredItems: null,
  }
 
-  render() {
+ componentDidMount = () => {
+  mainPageEvents.addListener('applyFilter',this.applyFilter);
+};
+
+componentWillUnmount = () => {
+  mainPageEvents.removeListener('applyFilter',this.applyFilter);
+};
+
+applyFilter = (filter) => {
+  // if (filteringMode===0) {
+  //   return this.state.clients.filter(v => v.balance<0);
+  // }
+}
+
+render() {
     var itemsCode = this.state.items.map(v =>
       <Product key={v.id} id={v.id} type={v.type} name={v.name} price={v.price} weight={v.weight}
       img={v.img}  info={v.info}
