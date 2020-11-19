@@ -25,6 +25,7 @@ class MainPage extends React.PureComponent {
  state = {
    items: this.props.items,
    filteredItems: this.props.items,
+   sortMode: 0 //0-алфавитный порядок, 1 - по цене, 2 - по весу
  }
 
  componentDidMount = () => {
@@ -36,10 +37,32 @@ componentWillUnmount = () => {
 };
 
 applyFilter = (filter) => {
-  let filtered=[...this.state.items]
-  if (filter.type) {
-    this.setState({filteredItems: filtered.filter(v => v.type===filter.type)});
+  let filtered=[...this.state.items];
+  if (filter.type&&(filter.type!=='all')) {
+    filtered=filtered.filter(v => v.type===filter.type);
   }
+  if (filter.minPrice) {
+    filtered=filtered.filter(v => v.price>=filter.minPrice);
+  }
+  if (filter.maxPrice) {
+    filtered=filtered.filter(v => v.price<=filter.maxPrice);
+  }
+  if (filter.minWeight) {
+    filtered=filtered.filter(v => v.weight>=(filter.minWeight/1000));
+  }
+  if (filter.maxWeight) {
+    filtered=filtered.filter(v => v.weight<=(fsilter.maxWeight/1000));
+  }
+  this.setState({filteredItems: filtered});
+}
+
+sort = (EO) => {
+  let sorted=[...this.state.items];
+   if (EO.target.value==="name") {
+    sorted = this.state.filteredItems.sort((a, b) => a.name > b.name ? 1 : -1);
+    console.log(this.state.filteredItems===sorted)
+  }
+  this.setState({filteredItems: sorted});
 }
 
 render() {
@@ -51,9 +74,19 @@ render() {
     console.log('MainPage Render');
     return (
       <div className="page-body">
-        <Filter/>
-        <div className="main-page">
-          {itemsCode}
+        <div className="sort">
+          <select onChange={this.sort} defaultValue="name">
+            <option value="name" >Сортировать по имени</option> 
+            <option value="type" >Сортировать по типу</option> 
+            <option value="price" >Сортировать по цене</option>
+            <option value="weight">Сортировать по весу</option>            
+          </select>
+        </div>
+        <div className="page-body__info">
+          <Filter/>
+          <div className="main-page">
+            {itemsCode}
+          </div>
         </div>
       </div>
     )

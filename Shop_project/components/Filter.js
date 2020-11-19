@@ -44,9 +44,20 @@ class Filter extends React.PureComponent {
     filter.minPrice = this.inputPriceMinRef.value;
     filter.maxPrice = this.inputPriceMaxRef.value;
     filter.minWeight = this.inputWeightMinRef.value;
-    filter.maxWeigt = this.inputWeightMaxRef.value;
+    filter.maxWeight = this.inputWeightMaxRef.value;
     mainPageEvents.emit('applyFilter', filter);
   }
+
+  cancelFilter = () => {
+    this.inputTypeRef.value="all";
+    this.inputPriceMinRef.value="";
+    this.inputPriceMaxRef.value="";
+    this.inputWeightMinRef.value="";
+    this.inputWeightMaxRef.value="";
+    let filter={};
+    mainPageEvents.emit('applyFilter', filter);
+  }
+
 
   render() {
     console.log('Filter rendered')
@@ -58,7 +69,8 @@ class Filter extends React.PureComponent {
             <label htmlFor="select-type">Тип блюда:</label>
           </div>
           <div className="filter-type__select">
-            <select id="select-type" ref={this.setInputTypeRef} defaultValue="Pizza">
+            <select id="select-type" ref={this.setInputTypeRef} defaultValue="all">
+              <option value="all" >Любой</option> 
               <option value="pizza" >Пицца</option> 
               <option value="snack" >Закуски</option>
               <option value="dessert">Дессерты</option>            
@@ -76,7 +88,7 @@ class Filter extends React.PureComponent {
         </div>
         <div className="filter-item">
           <div className="filter-item__name">
-            <label htmlFor="select-weight-min">Вес блюда:</label>
+            <label htmlFor="select-weight-min">Вес блюда (грамм):</label>
           </div>
           <div className="filter-input">
             <input type="text" id="select-weight-min" ref={this.setInputWeightMinRef} placeholder='от'/>
@@ -89,10 +101,7 @@ class Filter extends React.PureComponent {
         </div>
       </div>
     )
-    ;
-
   }
-
 }
 
 export default Filter;
