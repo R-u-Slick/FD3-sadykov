@@ -23,9 +23,9 @@ class MainPage extends React.PureComponent {
  };
 
  state = {
-   items: this.props.items,
+   items: this.props.items.sort((a, b) => a.name > b.name ? 1 : -1),
    filteredItems: this.props.items,
-   sortMode: 0 //0-алфавитный порядок, 1 - по цене, 2 - по весу
+   sortMode: "name"
  }
 
  componentDidMount = () => {
@@ -53,16 +53,38 @@ applyFilter = (filter) => {
   if (filter.maxWeight) {
     filtered=filtered.filter(v => v.weight<=(fsilter.maxWeight/1000));
   }
-  this.setState({filteredItems: filtered});
+
+  this.setState({filteredItems: this.sort(filtered, this.state.sortMode)});
 }
 
-sort = (EO) => {
-  let sorted=[...this.state.items];
-   if (EO.target.value==="name") {
-    sorted = this.state.filteredItems.sort((a, b) => a.name > b.name ? 1 : -1);
-    console.log(this.state.filteredItems===sorted)
-  }
+sortModeChanged = (EO) => {
+  this.setState({sortMode: EO.target.value});
+  let sorted=[...this.state.filteredItems];
+  sorted=this.sort(sorted, EO.target.value);
   this.setState({filteredItems: sorted});
+}
+
+sort = (unsorted, sortMode) => {
+  let sorted;
+  if (sortMode==="name") {
+    sorted = unsorted.sort((a, b) => a.name > b.name ? 1 : -1);
+  }
+  if (sortMode==="type") {
+    sorted = unsorted.sort((a, b) => a.type > b.type ? 1 : -1);
+  }
+  if (sortMode==="priceToMin") {
+    sorted = unsorted.sort((a, b) => a.price > b.price ? -1 : 1);
+  }
+  if (sortMode==="priceToMax") {
+    sorted = unsorted.sort((a, b) => a.price > b.price ? 1 : -1);
+  }
+  if (sortMode==="weightToMin") {
+    sorted = unsorted.sort((a, b) => a.weight > b.weight ? -1 : 1);
+  }
+  if (sortMode==="weightToMax") {
+    sorted = unsorted.sort((a, b) => a.weight > b.weight ? 1 : -1);
+  }
+  return sorted;
 }
 
 render() {
@@ -74,18 +96,22 @@ render() {
     console.log('MainPage Render');
     return (
       <div className="page-body">
-        <div className="sort">
-          <select onChange={this.sort} defaultValue="name">
-            <option value="name" >Сортировать по имени</option> 
-            <option value="type" >Сортировать по типу</option> 
-            <option value="price" >Сортировать по цене</option>
-            <option value="weight">Сортировать по весу</option>            
-          </select>
-        </div>
         <div className="page-body__info">
           <Filter/>
-          <div className="main-page">
-            {itemsCode}
+          <div className="main-content">
+            <div className="sort">
+              <select onChange={this.sortModeChanged} defaultValue="name">
+                <option value="name" >Сортировать по имени</option> 
+                <option value="type" >Сортировать по типу</option> 
+                <option value="priceToMin" >По убыванию цены</option>
+                <option value="priceToMax" >По возрастанию цены</option>
+                <option value="weightToMin">По убыванию веса</option> 
+                <option value="weightToMax">По возрастанию веса</option>                      
+              </select>
+            </div>
+            <div className="products">
+              {itemsCode}
+            </div>
           </div>
         </div>
       </div>
