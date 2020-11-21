@@ -1,11 +1,14 @@
 .pages-links {
     text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 80px;
 }
 
 .PageLink {
     color: #007dfa;
     text-decoration: none;
-    margin-right: 50px;
+    margin-right: 80px;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;

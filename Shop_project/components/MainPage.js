@@ -110,6 +110,10 @@ render() {
               </select>
             </div>
             <div className="products">
+              {
+                (!Boolean(this.state.filteredItems.length))&&
+                <div className="wrong-filter"> Упс! У нас нет таких товаров, попробуйте изменить условия поиска </div>
+              }
               {itemsCode}
             </div>
           </div>
