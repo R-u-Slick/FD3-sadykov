@@ -74,9 +74,6 @@ class Filter extends React.PureComponent {
     else this.setState({weightIsInvalid: false})
   }
 
-
-
-
   render() {
     console.log('Filter rendered')
     return (

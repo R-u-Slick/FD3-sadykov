@@ -89,9 +89,7 @@ sort = (unsorted, sortMode) => {
 
 render() {
     var itemsCode = this.state.filteredItems.map(v =>
-      <Product key={v.id} id={v.id} type={v.type} name={v.name} price={v.price} weight={v.weight}
-      img={v.img}  info={v.info}
-      />
+      <Product key={v.id} currentProduct={v} />
     )
     console.log('MainPage Render');
     return (
