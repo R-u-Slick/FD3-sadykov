@@ -20,7 +20,7 @@ class Product extends React.PureComponent{
   };
 
   addToBasket = () => {
-    this.props.dispatch(basketProduct_add(this.props.currentProduct) );
+    this.props.dispatch(basketProduct_add(this.props.currentProduct.id, Number(this.props.currentProduct.price.toFixed(2)), this.props.currentProduct.name) );
   }
 
   render() {

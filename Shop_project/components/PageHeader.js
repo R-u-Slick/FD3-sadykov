@@ -13,13 +13,20 @@ class PageHeader extends React.Component {
 
   summPrice = (basketProducts) => {
     if (basketProducts.length) {
-    let summ = basketProducts.reduce((r, v)=>r+v.price, 0);
+    let summ = basketProducts.reduce((r, v)=>r+v.price*v.quantity, 0);
     return summ.toFixed(2);
     }
   }
 
+  summQuantity = (basketProducts) => {
+    if (basketProducts.length) {
+      let summ = basketProducts.reduce((r, v)=>r+v.quantity, 0);
+      return summ
+      } 
+  }
+
   render() {
-    this.summPrice(this.props.basketProducts)
+    console.log('header rendered')
     return (
       <div className="page-header">
         <div className="page-header__late"><div className="page-header__late-minutes">45 минут</div> или пицца бесплатно</div>
@@ -34,7 +41,7 @@ class PageHeader extends React.Component {
               Сумма: {this.props.basketProducts.length?this.summPrice(this.props.basketProducts):0} руб.
             </div>
             <div className="basket-text">
-              Товаров в корзине: {this.props.basketProducts.length}
+              Товаров в корзине: {this.summQuantity(this.props.basketProducts)}
             </div>
           </div>
         </div>

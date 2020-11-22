@@ -15,24 +15,16 @@ class BasketPage extends React.PureComponent {
     basketProducts: this.props.basketProducts,
   }
 
-  basketProductsSumm = [];
 
-  calculateQuantity = () => {
-    this.state.basketProducts.forEach((v)=>{
-      if (!this.basketProductsSumm.some((item)=>item.id===v.id)) {
-        let basketProductData = {};
-        basketProductData.id=v.id; 
-        basketProductData.name=v.name; 
-        basketProductData.quantity=this.state.basketProducts.filter(item=>item === v).length; 
-        basketProductData.summ=Number((basketProductData.quantity*v.price).toFixed(2));
-        this.basketProductsSumm.push(basketProductData)
-      }
-    })
+  summPrice = (basketProducts) => {
+    if (basketProducts.length) {
+    let summ = basketProducts.reduce((r, v)=>r+v.price*v.quantity, 0);
+    return summ.toFixed(2);
+    }
   }
 
   render() {
-    this.calculateQuantity();
-    var itemsCode = this.basketProductsSumm.map(v =>
+    var itemsCode = this.props.basketProducts.map(v =>
       <BasketProduct key={v.id} currentProduct={v} />
     )
     console.log('Basket rendered');
@@ -53,6 +45,12 @@ class BasketPage extends React.PureComponent {
            {itemsCode}
           </tbody>
         </table>
+        {
+        (Boolean(this.props.basketProducts.length))&&
+        <div className="basket-total">
+          Итого: {this.summPrice(this.props.basketProducts)} руб.
+        </div>
+        }
       </div>
     )
   }
