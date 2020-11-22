@@ -30,7 +30,7 @@ class PageHeader extends React.Component {
     return (
       <div className="page-header">
         <div className="page-header__late"><div className="page-header__late-minutes">45 минут</div> или пицца бесплатно</div>
-        <div className="page-header__logo">Лисицца <br/>  пицца </div>
+        <div className="page-header__logo"><NavLink to="/" exact className="logo-link">Лисицца <br/>  пицца </NavLink></div>
         <div className="page-header__info">
           <div className="page-header__info-phone">777-77-77</div>
           <div className="page-header__info-basket">

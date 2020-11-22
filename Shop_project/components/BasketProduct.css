@@ -37,3 +37,9 @@
   border: none;
   cursor: pointer;
 }
+
+.basket-product-button:focus,
+.basket-product-button:active {
+  border: none;
+  outline: none;
+}

@@ -44,10 +44,12 @@ function basketReducer(state=initState,action) {
       };
       let arrayIndex = newState.basketProducts.findIndex(item => item.id === action.id);
       let newHash = {...newState.basketProducts[arrayIndex]};
-      let quantity = newHash.quantity-1;
-      newHash={...newHash, quantity:quantity};
-      newState.basketProducts=newState.basketProducts.slice();
-      newState.basketProducts.splice(arrayIndex,1,newHash);
+      if (newHash.quantity>0) {
+        let quantity = newHash.quantity-1;
+        newHash={...newHash, quantity:quantity};
+        newState.basketProducts=newState.basketProducts.slice();
+        newState.basketProducts.splice(arrayIndex,1,newHash);
+      }
       return newState;       
     }
 
