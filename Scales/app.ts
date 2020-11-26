@@ -1,63 +1,55 @@
 
 class Scale {
-    static productsArray:Array<Object>=[];
+    productsArray:Array<Product>=[];
 
-    num:string;
-
-    wheels:number=4;
-
-    constructor(_num:string) {
-        Car.carsCount++;
-        this.num=_num; 
+    constructor() {
     }
 
-    add(product:Object):void {
-        Scale.productsArray.push(product);
+    add(product:Product):void {
+        this.productsArray.push(product);
     }
 
-    getSumScale():void {
-
+    getSumScale():number {
+        return this.productsArray.reduce((r, v)=>r+v.getScale(), 0);
     }
 
-    getNameList():void {
-
+    getNameList():Array<string> {
+        let names:Array<string>=[];
+        this.productsArray.forEach(v=>names.push(v.getName()));
+        return names;
     }
     
 }
-
 
 class Product {
     static productsArray:Array<Object>=[];
 
-    num:string;
+    name:string;
 
-    wheels:number=4;
+    weight:number;
 
-    constructor(_num:string) {
-        Car.carsCount++;
-        this.num=_num; 
+    constructor(_name:string, _weight:number) {
+        this.name=_name;
+        this.weight=_weight; 
     }
 
-    add(product:Object):void {
-        Scale.productsArray.push(product);
+    getScale():number {
+        return this.weight;
     }
 
-    getSumScale():void {
-
-    }
-
-    getNameList():void {
-
-    }
-    
+    getName():string {
+        return this.name;        
+    }  
 }
 
+let scale1:Scale=new Scale();
+let tomato:Product=new Product("Помидор", 100);
+let apple:Product=new Product("яблоко", 150);
+let pear:Product=new Product("груша", 200);
 
+scale1.add(tomato);
+scale1.add(apple);
+scale1.add(pear);
 
-let car1:Car=new Car("2870-ОГО");
-car1.show();
-
-let car2:Car=new Car("233322");
-car2.show();
-
-console.log("всего машинок создано: "+Car.carsCount);
+console.log(scale1.getSumScale());
+console.log(scale1.getNameList());
