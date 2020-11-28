@@ -39,7 +39,6 @@ var Product = /** @class */ (function () {
     Product.prototype.getName = function () {
         return this.name;
     };
-    Product.productsArray = [];
     return Product;
 }());
 var Tomato = /** @class */ (function (_super) {
