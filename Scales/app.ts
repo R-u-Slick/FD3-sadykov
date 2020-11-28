@@ -22,10 +22,7 @@ class Scale {
 }
 
 class Product {
-    static productsArray:Array<Object>=[];
-
     name:string;
-
     weight:number;
 
     constructor(_name:string, _weight:number) {
