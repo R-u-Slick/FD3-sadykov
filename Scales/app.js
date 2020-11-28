@@ -1,3 +1,16 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var Scale = /** @class */ (function () {
     function Scale() {
         this.productsArray = [];
@@ -29,10 +42,34 @@ var Product = /** @class */ (function () {
     Product.productsArray = [];
     return Product;
 }());
+var Tomato = /** @class */ (function (_super) {
+    __extends(Tomato, _super);
+    function Tomato() {
+        return _super.call(this, "Помидор", 100) || this;
+    }
+    return Tomato;
+}(Product));
+;
+var Apple = /** @class */ (function (_super) {
+    __extends(Apple, _super);
+    function Apple() {
+        return _super.call(this, "Яблоко", 150) || this;
+    }
+    return Apple;
+}(Product));
+;
+var Pear = /** @class */ (function (_super) {
+    __extends(Pear, _super);
+    function Pear() {
+        return _super.call(this, "Груша", 200) || this;
+    }
+    return Pear;
+}(Product));
+;
 var scale1 = new Scale();
-var tomato = new Product("Помидор", 100);
-var apple = new Product("яблоко", 150);
-var pear = new Product("груша", 200);
+var tomato = new Tomato;
+var apple = new Apple;
+var pear = new Pear;
 scale1.add(tomato);
 scale1.add(apple);
 scale1.add(pear);

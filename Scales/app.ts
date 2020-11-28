@@ -42,10 +42,29 @@ class Product {
     }  
 }
 
+class Tomato extends Product{
+    constructor() {
+        super("Помидор", 100); 
+    }
+};
+
+class Apple extends Product{
+    constructor() {
+        super("Яблоко", 150); 
+    }
+};
+
+class Pear extends Product{
+    constructor() {
+        super("Груша", 200); 
+    }
+};
+
+
 let scale1:Scale=new Scale();
-let tomato:Product=new Product("Помидор", 100);
-let apple:Product=new Product("яблоко", 150);
-let pear:Product=new Product("груша", 200);
+let tomato:Tomato=new Tomato;
+let apple:Apple=new Apple;
+let pear:Pear=new Pear;
 
 scale1.add(tomato);
 scale1.add(apple);
