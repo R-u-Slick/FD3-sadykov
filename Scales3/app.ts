@@ -1,15 +1,11 @@
 interface IStorageEngine {
-    
     addItem(item:Product):void;  
     getItem(index:number):Product; 
     getCount():number;  
-
 }
 
 class ScalesStorageEngineArray implements IStorageEngine {
     productsArray:Array<Product>=[];
-    constructor() {
-    }
     addItem(item:Product):void {
         this.productsArray.push(item);
     }
@@ -19,7 +15,21 @@ class ScalesStorageEngineArray implements IStorageEngine {
     getCount():number {
         return this.productsArray.length;
     }
+}
 
+class ScalesStorageEngineLocalStorage implements IStorageEngine {
+    productCode=0;
+    addItem(item:Product):void {
+        window.localStorage.setItem(this.productCode.toString(),JSON.stringify(item));
+        this.productCode++;
+    }
+    getItem(index:number):Product {
+       let currentItem = JSON.parse(window.localStorage.getItem(index.toString()));
+       return new Product(currentItem.name, currentItem.weight);
+    }
+    getCount():number {
+        return window.localStorage.length;
+    }
 }
 
 class Scales<StorageEngine extends IStorageEngine> {
@@ -31,22 +41,30 @@ class Scales<StorageEngine extends IStorageEngine> {
     }
 
     getSumScale():number {
+        let sum:number = 0;
         let count = this.engine.getCount();
-        for ()
-        return this.productsArray.reduce((r, v)=>r+v.getScale(), 0);
+        for (var i=0; i<count; i++) {
+            let currentItem:Product=this.engine.getItem(i);
+            sum+=currentItem.getScale();
+        }
+        return sum;
     }
 
     getNameList():Array<string> {
         let names:Array<string>=[];
-        this.productsArray.forEach(v=>names.push(v.getName()));
+        let count = this.engine.getCount();
+        for (var i=0; i<count; i++) {
+            let currentItem:Product=this.engine.getItem(i);           
+            names.push(currentItem.getName());
+        }
         return names;
     }
     
 }
 
 class Product {
-    name:string;
-    weight:number;
+    private name:string;
+    private weight:number;
 
     constructor(_name:string, _weight:number) {
         this.name=_name;
@@ -80,15 +98,27 @@ class Pear extends Product{
     }
 };
 
+let storageEngineArray = new ScalesStorageEngineArray;
+let storageEngineLocal = new ScalesStorageEngineLocalStorage;
 
-let scale1:Scale=new Scale();
-let tomato:Tomato=new Tomato;
-let apple:Apple=new Apple;
-let pear:Pear=new Pear;
+let scalesArray=new Scales<ScalesStorageEngineArray>(storageEngineArray);
+let scalesLocal=new Scales<ScalesStorageEngineLocalStorage>(storageEngineLocal);
 
-scale1.add(tomato);
-scale1.add(apple);
-scale1.add(pear);
+let tomato:Product=new Product("Помидор", 100);
+let apple:Product=new Product("Яблоко", 200);
+let pear:Product=new Product("Груша", 300);
 
-console.log(scale1.getSumScale());
-console.log(scale1.getNameList());
+scalesArray.add(tomato);
+scalesArray.add(apple);
+scalesArray.add(pear);
+console.log("ScalesArray sum: " + scalesArray.getSumScale());
+console.log("ScalesArray list: " + scalesArray.getNameList());
+
+scalesLocal.add(tomato);
+scalesLocal.add(apple);
+scalesLocal.add(pear);
+console.log("ScalesLocal sum: " + scalesLocal.getSumScale());
+console.log("ScalesLocal list: " + scalesLocal.getNameList());
+
+
+

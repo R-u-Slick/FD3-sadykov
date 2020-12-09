@@ -11,22 +11,64 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-var Scale = /** @class */ (function () {
-    function Scale() {
+var ScalesStorageEngineArray = /** @class */ (function () {
+    function ScalesStorageEngineArray() {
         this.productsArray = [];
     }
-    Scale.prototype.add = function (product) {
-        this.productsArray.push(product);
+    ScalesStorageEngineArray.prototype.addItem = function (item) {
+        this.productsArray.push(item);
     };
-    Scale.prototype.getSumScale = function () {
-        return this.productsArray.reduce(function (r, v) { return r + v.getScale(); }, 0);
+    ScalesStorageEngineArray.prototype.getItem = function (index) {
+        return this.productsArray[index];
     };
-    Scale.prototype.getNameList = function () {
+    ScalesStorageEngineArray.prototype.getCount = function () {
+        return this.productsArray.length;
+    };
+    return ScalesStorageEngineArray;
+}());
+var ScalesStorageEngineLocalStorage = /** @class */ (function () {
+    function ScalesStorageEngineLocalStorage() {
+        this.productCode = 0;
+    }
+    ScalesStorageEngineLocalStorage.prototype.addItem = function (item) {
+        window.localStorage.setItem(this.productCode.toString(), JSON.stringify(item));
+        this.productCode++;
+    };
+    ScalesStorageEngineLocalStorage.prototype.getItem = function (index) {
+        var currentItem = JSON.parse(window.localStorage.getItem(index.toString()));
+        return new Product(currentItem.name, currentItem.weight);
+    };
+    ScalesStorageEngineLocalStorage.prototype.getCount = function () {
+        return window.localStorage.length;
+    };
+    return ScalesStorageEngineLocalStorage;
+}());
+var Scales = /** @class */ (function () {
+    function Scales(engine) {
+        this.engine = engine;
+    }
+    Scales.prototype.add = function (product) {
+        this.engine.addItem(product);
+    };
+    Scales.prototype.getSumScale = function () {
+        var sum = 0;
+        var count = this.engine.getCount();
+        for (var i = 0; i < count; i++) {
+            var currentItem = this.engine.getItem(i);
+            sum += currentItem.getScale();
+        }
+        return sum;
+    };
+    Scales.prototype.getNameList = function () {
         var names = [];
-        this.productsArray.forEach(function (v) { return names.push(v.getName()); });
+        var count = this.engine.getCount();
+        for (var i = 0; i < count; i++) {
+            var currentItem = this.engine.getItem(i);
+            names.push(currentItem.getName());
+        }
         return names;
     };
-    return Scale;
+    return Scales;
 }());
 var Product = /** @class */ (function () {
     function Product(_name, _weight) {
@@ -65,13 +107,21 @@ var Pear = /** @class */ (function (_super) {
     return Pear;
 }(Product));
 ;
-var scale1 = new Scale();
-var tomato = new Tomato;
-var apple = new Apple;
-var pear = new Pear;
-scale1.add(tomato);
-scale1.add(apple);
-scale1.add(pear);
-console.log(scale1.getSumScale());
-console.log(scale1.getNameList());
+var storageEngineArray = new ScalesStorageEngineArray;
+var storageEngineLocal = new ScalesStorageEngineLocalStorage;
+var scalesArray = new Scales(storageEngineArray);
+var scalesLocal = new Scales(storageEngineLocal);
+var tomato = new Product("Помидор", 100);
+var apple = new Product("Яблоко", 200);
+var pear = new Product("Груша", 300);
+scalesArray.add(tomato);
+scalesArray.add(apple);
+scalesArray.add(pear);
+console.log("ScalesArray sum: " + scalesArray.getSumScale());
+console.log("ScalesArray list: " + scalesArray.getNameList());
+scalesLocal.add(tomato);
+scalesLocal.add(apple);
+scalesLocal.add(pear);
+console.log("ScalesLocal sum: " + scalesLocal.getSumScale());
+console.log("ScalesLocal list: " + scalesLocal.getNameList());
 //# sourceMappingURL=app.js.map
